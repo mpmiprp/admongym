@@ -33,7 +33,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
   
         initComponents();
      cargartabla();
-        inhabilitar();
+        
     }
     void cargartabla()
     {
@@ -41,7 +41,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
         String[] registro = new String[5];
         DefaultTableModel modelo;
         modelo = new DefaultTableModel(null,titulos);
-         ConexionMySQL mysql=new ConexionMySQL();
+         ConexionMysql mysql=new ConexionMysql();
     Connection cn= mysql.Conectar();
     try{
 
@@ -63,34 +63,7 @@ tbinfoclie.setModel(modelo);
         {
             JOptionPane.showMessageDialog(null, ex);
         }
-    }
-    void habilitar()
-    {
-txtNombre.setEnabled(true);
-txtTelefono.setEnabled(true);
-txtEmail.setEnabled(true);
-txtDireccion.setEnabled(true);
-btnNuevo.setEnabled(false);
-btnGuardar.setEnabled(true);
-btnCancelar.setEnabled(true);
-txtNombre.setText("");
-txtTelefono.setText("");
-txtEmail.setText("");
-txtDireccion.setText("");
-    }
-    void inhabilitar()
-    {
-txtNombre.setEnabled(false);
-txtTelefono.setEnabled(false);
-txtEmail.setEnabled(false);
-txtDireccion.setEnabled(false);
-btnNuevo.setEnabled(true);
-btnGuardar.setEnabled(false);
-btnCancelar.setEnabled(false);
-txtNombre.setText("");
-txtTelefono.setText("");
-txtEmail.setText("");
-txtDireccion.setText("");
+    
     }
 
     /**
@@ -265,73 +238,16 @@ private void cerrar(){
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
-        mostrardatos("");   } 
-    void mostrardatos(String valor){
-    DefaultTableModel modelo= new DefaultTableModel();
-    modelo.addColumn("ID");
-    modelo.addColumn("NOMBRE(S)");
-    modelo.addColumn("APELLIDO PATERNO");
-    modelo.addColumn("APELLIDO MATERNO");
-    modelo.addColumn("CALLE");
-    modelo.addColumn("NUMERO");
-    modelo.addColumn("COLONIA");
-    modelo.addColumn("DELEGACION");
-    modelo.addColumn("CP");
-    modelo.addColumn("TELEFONO");
-    modelo.addColumn("ID EXPEDIENTE");
-    modelo.addColumn("EDAD");
-    modelo.addColumn("SEXO");
-    modelo.addColumn("No. SS");
-    modelo.addColumn("INSTITUCION");
-    modelo.addColumn("CONTACTO");
-    modelo.addColumn("TELEFONO EMERG");
-    tbinfoclie.setModel(modelo);
-    
-    String sql="";
-    if(valor.equals(""))
-    {
-        sql="SELECT * FROM clientes inner join expediente_clientes on idClientes = idexpedienteclientes"; 
-    }
-    
-    String []datos = new String [17];
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while(rs.next()){
-                datos[0]=rs.getString(1);
-                datos[1]=rs.getString(2);
-                datos[2]=rs.getString(3);
-                datos[3]=rs.getString(4);
-                datos[4]=rs.getString(5);
-                datos[5]=rs.getString(6);
-                datos[6]=rs.getString(7);
-                datos[7]=rs.getString(8);
-                datos[8]=rs.getString(9);
-                datos[9]=rs.getString(10);
-                datos[10]=rs.getString(11);
-                datos[11]=rs.getString(12);
-                datos[12]=rs.getString(13);
-                datos[13]=rs.getString(14);
-                datos[14]=rs.getString(15);
-                datos[15]=rs.getString(16);
-                datos[16]=rs.getString(17);  
-                modelo.addRow(datos);
-            }
-            tbinfoclie.setModel(modelo);
-    }
-          catch (SQLException ex) {
-            Logger.getLogger(Informacion_cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-    
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
   
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
    /**
      * @param args the command line arguments
